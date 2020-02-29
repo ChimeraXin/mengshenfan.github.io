@@ -1,0 +1,103 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="John Doe"><title>设计模式(二) · Hexo</title><meta name="description" content="##单例模式
+
+ 所谓类的单例设计模式,就是采取一定的方法保证在整个软件系统中,对某个类只能存在一个对象实例,并且该类只提供一个取得其对象实例的方法.(静态方法)
+单例模式有八种方式:
+1.饿汉式(静态常量)
+
+ 步骤如下:
+  1)构造器私有化
+     2)类的内部创建对象
+     3)向外暴"><meta name="keywords"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 4.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">Hexo</a></h3></div></div><ul class="social-links"><li><a href="http://github.com/1092664620@qq.com" target="_blank" rel="noopener"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me" target="_blank" rel="noopener"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank" rel="noopener"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">Home</a></li><li><a href="/about">Sobre</a></li><li><a href="/archives">Arquivo</a></li><li><a href="/links">Links</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img src="http://img3.imgtn.bdimg.com/it/u=3821849296,321572483&amp;fm=26&amp;gp=0.jpg"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>设计模式(二)</a></h3></div><div class="post-content"><p>##单例模式</p>
+<blockquote>
+<p> 所谓类的单例设计模式,就是采取一定的方法保证在整个软件系统中,对某个类只能存在一个对象实例,并且该类只提供一个取得其对象实例的方法.(静态方法)</p>
+<p>单例模式有八种方式:</p>
+<pre><code>1.饿汉式(静态常量)
+
+ 步骤如下:
+  1)构造器私有化
+     2)类的内部创建对象
+     3)向外暴露一个静态的公共方法.getInstance()
+ 优缺点如下:
+     1)优点:这种写法比较简单,就是在类装载的时候就完成实例化.避免了线程同步问题
+     2)缺点:在类装载的时候就完成实例化,没有达到Lazy Loading的效果.如果从始至终从未使用过这个实例,则会造成内存的浪费.
+     3)这种方式基于classloader机制避免了多线程的同步问题,不过,instance在类装载时就实例化,在单例模式中大多数都是调用getInstance方法,
+       但是导致类加载的原因有很多种,因此不能确定有其他的方式(或其他的静态方法)导致类加载.这个时候初始化就没有达到Lazy Loading的效果.
+     4)结论:这种单例模式可用,可能造成内存浪费</code></pre><p>   2.饿汉式(静态代码块)</p>
+<pre><code>优缺点如下:
+    这种方式和静态常量方式类似,只不过将类实例化的过程放在了静态代码块中,也是在类加载的时候,就执行静态代码块中的代码,初始化类的实例.
+    优缺点和上面是一样的.</code></pre><p>   3)懒汉式(线程不安全)</p>
+<pre><code>优缺点说明:
+    1)起到了Lazy Loading的效果,但是只能在单线程下使用.
+    2)如果在多线程下,一个线程进入了if(instance == null)判断语句块,还未来得及往下执行.另一个线程也通过了这个判断语句,这时便会产生
+      多个实例.所以在多线程环境不可以使用这种方式.
+    3)结论:在实际开发中,不要使用这种方式.</code></pre><p>   4)懒汉式(线程安全,同步方法)</p>
+<pre><code>优缺点说明:
+    1)解决了线程不安全问题
+    2)效率太低了,每个线程在想获得类的实例的时候,执行getInstance()方法都要进行同步.而其实这个方法只执行一次代码实例化就够了,后面的想获得该例实例,直接return就行了.方法进行同步效率太低.
+    3)在实际开发中,不推荐使用这种方式.</code></pre><p>   5)线程安全,同步代码块</p>
+<pre><code>优缺点说明:
+    1)这种方式,本意是想改进第四种实现方式,因为前面同步方法效率太低,改为同步产生实例化的代码块.
+    2)但是这种同步并不能起到线程同步的作用,跟第三种实现方式遇到的情形一致,假如一个线程进入了if(instance == null)判断语句块,还未来得及往下执行.另一个线程也通过了这个判断语句,这时便会产生多个实例.
+    3)结论:在实际开发中,不能使用这种方式.</code></pre><p>   6)双重检查</p>
+<pre><code>优缺点说明:
+    1)Double-Check概念是多线程开发中常使用到的,如代码所示,我们进行了两次if(instance == null)检查,这样就可以保证其线程安全了.
+    2)这样,实例化代码只用执行一次,后面再次访问时,判断if(instance == null),直接return实例化对象,也避免了反复进行方法同步.
+    3)线程安全,延迟加载,效率较高.
+    4)结论:在实际开发中,推荐使用这种单例设计模式.</code></pre><p>   7)静态内部类</p>
+<pre><code>优缺点说明
+    1)这种方式采用了类装载的机制来保证初始化实例时,只有一个线程.
+    2)静态内部类方式在Singleton类被装载时并不会立即实例化,而是在需要实例化时,调用getInstance方法,才会装载SingletonInstance类,从而完    成Singleton的实例化.
+    3)类的静态属性只会在第一次加载类的时候初始化,所以在这里,JVM帮助我们保证了线程的安全性,在类进行初始化时,别的线程是无法进入的.
+    4)优点:避免了线程不安全,利用静态内部类实现延迟加载,效率高.
+    5)结论:推荐使用</code></pre><p>   8)枚举</p>
+<pre><code>优缺点说明:
+    1)借助JDK1.5中添加的枚举来实现单例模式,不仅能避免多线程同步问题,而且还能防止反序列化重新创建新的对象.
+    2)结论:推荐使用</code></pre><p>单例模式注意事项和细节说明:</p>
+</blockquote>
+<blockquote>
+<pre><code>1)单例模式保证了系统内存中该例只存在一个对象,节省了系统资源,对于一些需要频繁创建销毁的对象,使用单例模式可以提高系统性能.
+
+2)当想实例化一个单例类的时候,必须要记住使用相应的获取对象的方法,而不是使用new.
+
+3)单例模式的应用场景:需要频繁的进行创建和销毁的对象,创建对象时耗时过多或消耗资源过多(即:重量级对象),但又经常用到的对象,工具类对象,
+  频繁访问数据库文件的对象,(比如数据源,Session工厂等)</code></pre></blockquote>
+<blockquote>
+<p>##简单工厂模式</p>
+<p>传统方式的优缺点:</p>
+<p>   1.优点是比较好理解,简单易操作</p>
+<p>   2.缺点是违反了设计模式的ocp原则,(即对扩展开放,对修改关闭)</p>
+<p>   3.改进思路分析:修改代码可以接受,但是如果我们在其他的方法也有创建pizza的代码,就意味着也需要修改,而创建pizza的代码往往有多处.</p>
+<pre><code>思路:把创建pizza对象封装到一个类里,这样我们有新的pizza种类时,其他创建到pizza种类的代码就不需要修改了.--&gt;
+简单工厂模式</code></pre><p>简单工厂模式介绍:</p>
+<p>   1)简单工厂模式是属于创建型模式,是工厂模式的一种.简单工厂模式是由一个工厂对象决定创建出哪一种产品&gt;     类的实例.简单工厂模式是工厂模式家族中最简单实用的模式.</p>
+<p>   2)简单工厂模式:定义了一个创建对象的类,由这个类来封装创建实例化对象的行为(代码).</p>
+<p>   3)在软件开发中,我们会用到大量的创建某种,某类或某批对象时,就会使用到工厂模式.</p>
+</blockquote>
+<p>##工厂方法模式</p>
+<blockquote>
+<p>   工厂方法模式设计方案:将披萨项目的实例化功能抽象成抽象方法,在不同的口味子类点餐中具体实现.<br>   工厂方法模式:定义了一个创建对象的抽象方法,由子类决定要实例化的类.工厂方法模式将对象实例化推迟到子类.</p>
+</blockquote>
+<p>##抽象工厂模式</p>
+<blockquote>
+<p>1.定义了一个interface用于创建相关或有依赖关系的对象簇,而无须指明具体的类</p>
+<p>2.抽象工厂模式可以将简单工厂模式和工厂方法模式进行整合</p>
+<p>3.从设计层面看,抽象工厂模式就是对简单工厂模式的改进(或者称为进一步的抽象)</p>
+<p>4.将工厂抽象成两层,AbsFactory(抽象工厂)和具体实现的工厂子类.程序员可以根据创建对象类型使用对应的工厂子类.这样将单个的简单工厂类变成了工厂簇,更利于代码的维护和扩展.</p>
+</blockquote>
+<p>##工厂模式小结</p>
+<blockquote>
+<p>   1.工厂模式的意义:将实例化对象的代码提取出来,放到一个类中统一管理和维护,达到和主项目的依赖关系的解耦,从而提高项目的扩展性和维护性.</p>
+</blockquote>
+<blockquote>
+<p>   2.三种工厂模式</p>
+</blockquote>
+<blockquote>
+<p>   3.设计模式的依赖抽象原则</p>
+</blockquote>
+<blockquote>
+<pre><code>创建对象实例时,不要直接new类,而是把这个new类的动作放在一个工厂的方法中,并返回.(有的书上说,变量不要直接持有具体类的引用).</code></pre></blockquote>
+<blockquote>
+<pre><code>不要让类继承具体类,而是继承抽象类或者实现接口</code></pre></blockquote>
+<blockquote>
+<pre><code>不要覆盖基类中已经实现的方法</code></pre></blockquote>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-03-01</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" href="http://twitter.com/home?status=,http://yoursite.com/2020/03/01/设计模式(二)/,Hexo,设计模式(二),;" target="_blank" rel="noopener"></a></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a class="btn" role="navigation" href="/2020/03/01/hello-world/" title="Hello World">Próximo post</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

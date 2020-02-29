@@ -1,0 +1,240 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="John Doe"><title>设计模式(一) · Hexo</title><meta name="description" content="设计模式的重要性
+软件工程中，设计模式（design pattern）是对于软件设计中普遍存在（反复出现）的各种问题，所提出的解决方案。 
+
+
+设计模式的好处：
+
+使软件具有很好的扩展性
+使软件具有很好的维护性
+
+思考:用过什么设计模式，怎么用的，解决了什么问题?
+
+设计模式七大原则
+单一职责原则
+"><meta name="keywords"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 4.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">Hexo</a></h3></div></div><ul class="social-links"><li><a href="http://github.com/1092664620@qq.com" target="_blank" rel="noopener"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me" target="_blank" rel="noopener"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank" rel="noopener"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">Home</a></li><li><a href="/about">Sobre</a></li><li><a href="/archives">Arquivo</a></li><li><a href="/links">Links</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img src="http://img3.imgtn.bdimg.com/it/u=3821849296,321572483&amp;fm=26&amp;gp=0.jpg"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>设计模式(一)</a></h3></div><div class="post-content"><h2 id="设计模式的重要性"><a href="#设计模式的重要性" class="headerlink" title="设计模式的重要性"></a>设计模式的重要性</h2><blockquote>
+<p>软件工程中，设计模式（design pattern）是对于软件设计中普遍存在（反复出现）的各种问题，所提出的解决方案。 </p>
+</blockquote>
+<blockquote>
+<pre><code>设计模式的好处：</code></pre></blockquote>
+<blockquote>
+<pre><code>使软件具有很好的扩展性
+使软件具有很好的维护性</code></pre></blockquote>
+<blockquote>
+<p>思考:用过什么设计模式，怎么用的，解决了什么问题?</p>
+</blockquote>
+<h2 id="设计模式七大原则"><a href="#设计模式七大原则" class="headerlink" title="设计模式七大原则"></a>设计模式七大原则</h2><blockquote>
+<pre><code>单一职责原则
+   接口隔离原则
+   组合复用原则
+   迪米特原则
+   开闭原则
+   里氏替换原则
+   依赖倒转原则</code></pre></blockquote>
+<h2 id="设计模式的目的"><a href="#设计模式的目的" class="headerlink" title="设计模式的目的"></a>设计模式的目的</h2><blockquote>
+<pre><code>设计模式是为了让程序(软件)具有更好的:
+
+  1)代码重用性(相同功能的代码,不用多次编写)   
+     2)可读性(编程的规范性,便于其他程序员的阅读和理解)        
+     3)可扩展性(当需要增加新的功能时,非常方便,也称为可维护)        
+     4)可靠性(当我们增加新的功能后,对原来的功能没有影响)    
+     5)使程序呈现高内聚,低耦合的特性</code></pre></blockquote>
+<h2 id="设计原则的核心思想"><a href="#设计原则的核心思想" class="headerlink" title="设计原则的核心思想"></a>设计原则的核心思想</h2><blockquote>
+<p> 1.找出应用中可能需要变化之处,把他们独立出来,不要和那些不需要变化的代码混在一起.</p>
+<pre><code>2.针对接口编程,而不是针对实现编程.</code></pre><p>   3.为了交互对象之间的松耦合设计而努力.</p>
+</blockquote>
+<h2 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则:"></a>单一职责原则:</h2><blockquote>
+<p>对类来说,一个类应该只负责一项职责.假如类A负责两个不同职责:职责1,职责2,当职责1需求变更而改变A时,可能造成职责2执行错误.所以需要将类A的职责粒度分解为A1,A2.</p>
+</blockquote>
+<blockquote>
+<pre><code>单一职责原则注意事项和细节:
+
+    1)降低类的复杂度,一个类只负责一项职责
+    2)提高类的可读性,可维护性
+    3)降低变更引起的风险
+       4)通常情况下,我们应当遵守单一职责原则,只有逻辑足够简单才可以在代码级违反单一职责原则;只有类中的方法足够少,才可以在方法级别
+         保持单一职责原则.</code></pre></blockquote>
+<blockquote>
+<pre><code>接口隔离原则:
+
+  客户端不应该依赖它不需要的接口,即一个类对另一个类的依赖应建立在最小接口上.按接口隔离原则应该将接口拆分为独立的几个接口,依
+  赖的类分别与他们需要的接口建立依赖关系.</code></pre></blockquote>
+<p>##依赖倒转原则:</p>
+<blockquote>
+<p>1.高层模块不可以依赖低层模块,二者都应该依赖于抽象.    </p>
+<p>2.抽象不应该依赖细节,细节应该依赖抽象</p>
+</blockquote>
+<blockquote>
+<p>3.依赖倒转(倒置)的中心思想是面向接口编程</p>
+</blockquote>
+<blockquote>
+<p>4.依赖倒转原则是基于这样的设计理念:相对于细节的多变性,抽象的东西要稳定的多.以抽象为基础搭建的架构比以细节为基础的架构要稳定的多.在java中,抽象指的是接口或抽象类,细节就是具体的实现类.</p>
+</blockquote>
+<blockquote>
+<p>5.使用接口或抽象类的目的是制定好规范,而不涉及任何具体的操作,把展示细节的任务交给他们的实现类去完成.</p>
+</blockquote>
+<blockquote>
+<pre><code>依赖关系传递的三种方式:
+
+    1)接口传递
+       2)构造方法传递
+       3)setter方式传递</code></pre></blockquote>
+<blockquote>
+<pre><code>依赖倒转原则的注意事项和细节: 
+
+    1)底层模块尽量都要有抽象类或接口,或者两者兼有,程序稳定性要更好
+       2)变量的声明类型尽量是抽象类或接口,这样我们的变量引用和实际对象间,就存在一个缓冲层,利于程序扩展和优化.
+    3)继承时遵循里氏代换原则</code></pre></blockquote>
+<p>##里氏替换原则</p>
+<blockquote>
+<p>OO中的继承性的思考和说明</p>
+</blockquote>
+<blockquote>
+<p>  1.继承包含这样一层含义:父类中凡是已经实现好的方法,实际上是在设定规范和契约,虽然他不强制要求所有的子类必须遵循这些契约,但是如果子类对这些已经实现的方法任意修改,就会对整个继承体系造成破坏.</p>
+</blockquote>
+<blockquote>
+<p>2.继承在给程序设计带来便利的同时,也带来了弊端.比如使用继承会给程序带来侵入性,程序的可移植性降低,增加对象间的耦合性,如果一个类被其他的类所继承,则当这个类需要修改时,必须考虑到所有的子类,并且父类修改后,所有涉及到子类的功能都有可能产生故障.</p>
+</blockquote>
+<blockquote>
+<p>3.在编程中,如何正确的使用继承?=&gt;里氏代换原则</p>
+<pre><code>基本介绍:
+    1)如果对每个类型为T1的对象o1,都有类型为T2的对象o2,使得以T1定义的所有程序P在所有对象o1都代换成o2时,程序P的行为没有发生变化,那么
+      类型T2是类型T1的子类型.换句话说,所有引用基类的地方必须能透明的使用其子类的对象.
+     2)在使用继承时,遵循里氏替换原则,在子类中尽量不要重写父类的方法.
+     3)里氏替换原则告诉我们,继承实际上让两个类的耦合性增强了,在适当的情况下,可以通过聚合,组合,依赖来解决问题.</code></pre><p>解决办法:<br>通常的做法:让原来的子类和父类都继承一个更通俗的基类,原有的继承关系去掉,采用依赖,聚合,组合等关系代替.</p>
+</blockquote>
+<p>##开闭原则</p>
+<blockquote>
+<p>1.开闭原则是编程中最基础，最重要的设计原则。</p>
+</blockquote>
+<blockquote>
+<p>2.一个软件实体如类，模块和函数应该对扩展开放（对提供方)，对修改关闭（对使用方）。用抽象构建框架，用实现扩展细节。</p>
+</blockquote>
+<blockquote>
+<p>3.当软件需要变化时，尽量通过扩展软件实体的行为来实现变化，而不是通过修改已有的代码来实现变化。</p>
+</blockquote>
+<blockquote>
+<p>4.编程中遵顼其他原则，以及使用设计模式的目的就是遵循开闭原则。</p>
+</blockquote>
+<blockquote>
+<pre><code>方式1的优缺点（结合源代码理解）：
+     1）优点是比较好理解，简单易操作。
+    2）缺点是违反了设计模式的ocp原则，即对扩展开放，对修改关闭。即当我们给类增加新功能的时候，尽量不修改代码，或者尽量少修改代码。</code></pre><p>改进的思路分析：</p>
+<p>把创建的Shape类做成抽象类，并提供一个抽象的draw方法，让子类去实现即可，这样我们有新的图形种类时，只需要让新的图形类继承Shape，并实现draw方法即可。</p>
+</blockquote>
+<p>##迪米特原则</p>
+<blockquote>
+<p>1.一个对象应该对其他的对象保持最少的了解</p>
+<p>2.类与类关系越密切,耦合度越大.</p>
+<p>3.迪米特法则又叫最少知道原则.即一个类对自己依赖的类知道的越少越好.也就是说,对于被依赖的类不管多么复杂,都尽量将逻辑封装在类的内部.对外除了提供的public方法,不对外泄露任何信息.</p>
+<p>4.迪米特法则还有个更简单的定义:只与直接的朋友通信.</p>
+<p>5.直接的朋友:每个对象都会与其它对象有耦合关系,只要两个对象之间有耦合关系,我们就说这两个对象之间是朋友关系,耦合的方式很多,依赖,关联,组合,聚合等.其中,我们称出现在成员变量,方法参数,方法返回值中的类为直接的朋友,而出现在局部变量中的类不是直接的朋友.也就是说,陌生的类最好不要以局部变量的形式出现的类的内部.</p>
+<pre><code>迪米特法则注意事项和细节:
+    1)迪米特法则的核心是降低类之间的耦合
+    2)但是注意:由于每个类都减少了不必要的依赖,因此迪米特法则只是要求降低类之间的(对象间的)耦合关系,并不是完全没有依赖关系.</code></pre></blockquote>
+<p>##合成复用原则</p>
+<blockquote>
+<p>   尽量使用合成/聚合的方式,而不是使用继承.</p>
+</blockquote>
+<p>##UML基本介绍</p>
+<blockquote>
+<p>1)UML(统一建模语言),是一种用于软件系统分析和设计的语言工具,它用于帮助软件开发人员进行思考和记录思路的结果.</p>
+</blockquote>
+<blockquote>
+<p>2)UML有一套符号的规定,就像数学符号和化学符号一样,这些符号用于描述软件模型中的各个元素和他们之间的关系,比如类,接口,实现,泛化,依赖,组合,聚合等.</p>
+</blockquote>
+<blockquote>
+<p>3)使用UML来建模,常用的工具有Rational Rose,也可以使用一些插件来建模.</p>
+</blockquote>
+<blockquote>
+<pre><code>组件：
+    Note:注释
+    Class:表示一个类,可以添加属性和方法.
+    Interface:表示接口
+    Dependency:表示依赖(使用).
+    Association:表示关联.
+    Generalization:表示泛化(继承).
+    Realization:表示实现.
+    Aggregation:表示聚合
+    Composite:组合</code></pre></blockquote>
+<p>##UML类图</p>
+<blockquote>
+<p>画UML图与写文章差不多,都是把自己的思想描述给别人看,关键在于思路和条理.</p>
+</blockquote>
+<blockquote>
+<p>UML图分类:</p>
+</blockquote>
+<blockquote>
+<p>1)用例图</p>
+</blockquote>
+<blockquote>
+<p>2)静态结构图:类图,对象图,包图,组件图,部署图</p>
+</blockquote>
+<blockquote>
+<p>3)动态行为图:交互图(时序图与协作图),状态图,活动图</p>
+</blockquote>
+<blockquote>
+<pre><code>说明:
+    1)类图是描述类与类之间的关系的,是UML中最核心的.
+    2)在讲解设计模式时,我们必然会使用类图,为了让学员们把设计模式学到位,需要先给大家讲解类图.    </code></pre></blockquote>
+<blockquote>
+<p>UML类图:</p>
+</blockquote>
+<blockquote>
+<p>1.用于描述系统中的类(对象)本身的组成和类(对象)之间的各种静态关系.</p>
+</blockquote>
+<blockquote>
+<p>2.类之间的关系:依赖,泛化(继承),实现,关联,聚合和组合.</p>
+</blockquote>
+<blockquote>
+<pre><code>类图--依赖关系:只是在类中用到了对方,那么他们之间就存在依赖关系.如果没有对方,连编译都通过不了.</code></pre></blockquote>
+<blockquote>
+<pre><code>    1)类中用到了对方
+    2)如果是类的成员属性
+    3)如果是方法的返回类型
+    4)是方法接受的参数类型
+    5)方法中使用到
+
+类图--泛化关系:
+    泛化关系实际上就是继承关系,它是依赖关系的特例.
+
+类图--实现关系:实现关系实际上就是A类实现B类,它是依赖关系的特例.
+
+类图--关联关系:
+    关联关系实际上就是类与类之间的联系,它是依赖关系的特例.
+    关联具有导航型:即双向关系或单向关系.
+    关联具有多重性:如&quot;1&quot;表示有且仅有一个,&quot;0...&quot;表示0个或者多个,&quot;0,1&quot;表示0个或1个,&quot;n...m&quot;表示n到m个都可以,&quot;m...&quot;表示至少m个.
+    关联关系具有单向一对一关系和多向一对一关系.</code></pre></blockquote>
+<blockquote>
+<pre><code>类图--聚合关系
+    聚合关系表示的是整体和部分之间的关系,整体与部分可以分开.聚合关系是关联关系的特例,所以它具有关联关系的导航型与多重性</code></pre></blockquote>
+<blockquote>
+<pre><code>类图--组合关系:组合关系,也是整体与部分关系,但是整体与部分不可以分开.
+    但是如果在程序中Person实体定义了对IDCard进行级联删除,即删除Person时,连同IDCard一起删除,那么IDCard和Person就是组合了.    </code></pre></blockquote>
+<p>##掌握设计模式的层次</p>
+<blockquote>
+<p>1第一层:刚开始学编程不久,听说过什么是设计模式.</p>
+</blockquote>
+<blockquote>
+<p>2.第二层:有很长时间的编程经验,自己写了很多代码.其中用到了设计模式,但是自己却不知道.</p>
+</blockquote>
+<blockquote>
+<p>3.第三层:学习过了设计模式,发现自己应经在使用了,并且发现一些新的模式挺好用的.    </p>
+</blockquote>
+<blockquote>
+<p>4.第四层:阅读了很多别人写的源码和框架,在其中看到了别人的设计模式,并且能够领会设计模式的精妙和带来的好处.</p>
+</blockquote>
+<blockquote>
+<p>5.第五层:代码写着写着,自己都没有意识到使用了设计模式,并且熟练的写出来了.</p>
+</blockquote>
+<p>##设计模式类型</p>
+<blockquote>
+<p>设计模式分为三种类型,共23种.</p>
+<p>1.创建型模式<br>单例模式,抽象工厂模式,原型模式,建造者模式,工厂模式.</p>
+</blockquote>
+<blockquote>
+<p>2.结构型模式<br>适配器模式,桥接模式,装饰模式,组合模式,外观模式,享元模式,代理模式.</p>
+</blockquote>
+<blockquote>
+<p>3.行为型模式<br>模板方法模式,命令模式,访问者模式,迭代器模式,观察者模式,中介者模式,备忘录模式,解释器模式,状态模式,策略模式,职责链模式.</p>
+</blockquote>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-03-01</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" href="http://twitter.com/home?status=,http://yoursite.com/2020/03/01/设计模式(一)/,Hexo,设计模式(一),;" target="_blank" rel="noopener"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2020/03/01/hello-world/" title="Hello World">Post Anterior</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
